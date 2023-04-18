@@ -1,5 +1,5 @@
 cp mongo.repo /etc/yum.repos.d/mongo.repo
-install mongodb-org -y
+yum install mongodb-org -y
 systemtl enable mongod
 systemtl start mongod
 
