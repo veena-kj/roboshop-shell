@@ -17,3 +17,4 @@ systemctl restart catalogue
 
 yum install mongodb-org-shell -y
 mongo --host mongodb-dev.e-platform.online </app/schema/catalogue.js
+
