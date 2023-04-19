@@ -28,5 +28,4 @@ echo -e "\e[36m >>>> Install mongodb client  <<<<<<<\e[0m"
 yum install mongodb-org-shell -y
 echo -e "\e[36m >>>> load schema <<<<<<<\e[0m"
 mongo --host mongodb-dev.e-platform.online </app/schema/catalogue.js
-systemctl restart catalogue
 
