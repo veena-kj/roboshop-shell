@@ -1,5 +1,5 @@
 echo -e "\e[36m<<<<<<<<< Configuring mysql required version Repo files >>>>>>>>\e[0m"
-cp mysql.repo /etc/yum.repos.d/mysql.repo
+cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo
 echo -e "\e[36m<<<<<<<<< disabling  default version repo files >>>>>>>>\e[0m"
 dnf module disable mysql -y
 echo -e "\e[36m<<<<<<<<< Install mysql server >>>>>>>>\e[0m"
