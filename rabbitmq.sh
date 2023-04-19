@@ -7,7 +7,7 @@ yum install erlang -y
 yum install rabbitmq-server -y
 echo -e "\e[36m<<<<<<<<< Enable&start Rabbitmq >>>>>>>>\e[0m"
 systemctl enable rabbitmq-server
-systemctl start rabbitmq-server
+systemctl restart rabbitmq-server
 echo -e "\e[36m<<<<<<<<< Start using rabbitmq services with new creds >>>>>>>>\e[0m"
 rabbitmqctl add_user roboshop roboshop123
 echo -e "\e[36m<<<<<<<<< Setting the permissions for rabbitmq service for new user >>>>>>>>\e[0m"
