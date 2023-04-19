@@ -1,4 +1,5 @@
 echo -e "\e[36m<<<<<<<<< Install Maven >>>>>>>>\e[0m"
+pwd
 yum install maven -y
 echo -e "\e[36m<<<<<<<<< Create App user >>>>>>>>\e[0m"
 useradd roboshop
@@ -11,7 +12,7 @@ echo -e "\e[36m<<<<<<<<< Download App content >>>>>>>>\e[0m"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
 echo -e "\e[36m<<<<<<<<< change to app directory >>>>>>>>\e[0m"
 cd /app
-echo -e "\e[36m<<<<<<<<< Unzip app content >>>>>>>>\e[0m"
+echo -e "\e[36m<<<<<<<<< extract app content >>>>>>>>\e[0m"
 unzip /tmp/shipping.zip
 echo -e "\e[36m<<<<<<<<< Install Dependencies for Maven >>>>>>>>\e[0m"
 cd /app
