@@ -4,7 +4,7 @@ echo -e "\e[36m<<<<<<<<< Create App user >>>>>>>>\e[0m"
 useradd roboshop
 echo -e "\e[36m<<<<<<<<< Create app directory >>>>>>>>\e[0m"
 mkdir /app
-e
+
 echo -e "\e[36m<<<<<<<<< Install Maven >>>>>>>>\e[0m"
 cp /home/centos/roboshop-shell/mysql.repo /etc/yum.repos.d/mysql.repo
 echo -e "\e[36m<<<<<<<<< Download App content >>>>>>>>\e[0m"
