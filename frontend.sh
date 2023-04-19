@@ -9,8 +9,9 @@ echo -e "\e[36m********* navigate to content location & Extract app content*****
 cd /usr/share/nginx/html
 pwd
 unzip /tmp/frontend.zip
-systemctl enable nginx
-systemctl start nginx
+
 echo -e "\e[36m********* Configure reverse proxy **************\e[0m"
 cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
 echo -e "\e[36m********* Enable nginx **************\e[0m"
+systemctl enable nginx
+systemctl start nginx
