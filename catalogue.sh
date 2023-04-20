@@ -1,4 +1,4 @@
-source common.sh
+#source common.sh
 dirname $0
 echo $0
 
