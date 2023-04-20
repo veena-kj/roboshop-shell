@@ -1,4 +1,9 @@
 source common.sh
+dirname
+echo $0
+
+exit
+
 echo -e "\e[36m>>>>>>>>>>>> configuring nodejs repos <<<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
