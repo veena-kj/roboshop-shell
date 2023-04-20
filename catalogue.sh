@@ -1,6 +1,7 @@
 #source common.sh
 dirname $0
 echo $0
+script_path = ${dirname $0}
 
 exit
 
