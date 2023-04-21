@@ -1,31 +1,37 @@
+script=$(realpath $0)
+script_path=$(dirname $script)
 app_user=roboshop
+
+func_heading(){
+  echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m"
+  }
 
 func_nodejs(){
 
-  echo -e "\e[36m<<<<<<<<< Configuring NodeJs Repo files >>>>>>>>\e[0m"
+  func_heading "Configuring NodeJs Repo files"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-  echo -e "\e[36m<<<<<<<<< Configuring NodeJs Repo files >>>>>>>>\e[0m"
+  func_heading Configuring NodeJs Repo files
   yum install nodejs -y
   rm -rf /app
-  echo -e "\e[36m<<<<<<<<< Create application user  >>>>>>>>\e[0m"
+  func_heading "Create application user"
   useradd ${app_user}
-  echo -e "\e[36m<<<<<<<<< Create app directory >>>>>>>>\e[0m"
+  func_heading "Create app directory "
   mkdir /app
-  echo -e "\e[36m<<<<<<<<< Download the application content >>>>>>>>\e[0m"
+  func_heading "Download the application content "
   curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
 
-  echo -e "\e[36m<<<<<<<<< change to app directory  >>>>>>>>\e[0m"
+  func_heading "change to app directory"
   cd /app
-  echo -e "\e[36m<<<<<<<<< Download the app content >>>>>>>>\e[0m"
+  func_heading "Download the app content"
   unzip /tmp/${component}.zip
-  echo -e "\e[36m<<<<<<<<< Install NodeJs dependencies >>>>>>>>\e[0m"
+  func_heading "Install NodeJs dependencies"
   npm install
-  echo -e "\e[36m<<<<<<<<< Create cart systemd service >>>>>>>>\e[0m"
+  func_heading "Create cart systemd service"
   cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
   #cp cart.service /etc/systemd/system/cart.service
   #Ensure you replace <MONGODB-SERVER-IPADDRESS> with IP address of mongodb in catalog service file
-  echo -e "\e[36m<<<<<<<<< Enable and start Cart >>>>>>>>\e[0m"
+  func_heading "Enable and start Cart"
   systemctl daemon-reload
   systemctl enable ${component}
   systemctl restart ${component}

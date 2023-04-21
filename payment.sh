@@ -4,28 +4,28 @@ source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 payment
 
-echo -e "\e[36m<<<<<<<<< Install python  >>>>>>>>\e[0m"
+func_heading "Install python "
 
 yum install python36 gcc python3-devel -y
-echo -e "\e[36m<<<<<<<<< Create app user  >>>>>>>>\e[0m"
+func_heading "Create app user"
 useradd ${app_user}
-echo -e "\e[36m<<<<<<<<< Create app directory  >>>>>>>>\e[0m"
+func_heading "Create app directory"
 mkdir /app
-echo -e "\e[36m<<<<<<<<< Downlaod App content  >>>>>>>>\e[0m"
+func_heading "Downlaod App content"
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
-echo -e "\e[36m<<<<<<<<< changed to App directory  >>>>>>>>\e[0m"
+func_heading "changed to App directory"
 cd /app
-echo -e "\e[36m<<<<<<<<< Unzip the app content  >>>>>>>>\e[0m"
+func_heading "Unzip the app content"
 unzip /tmp/payment.zip
 
-echo -e "\e[36m<<<<<<<<< Install dependencies  >>>>>>>>\e[0m"
+func_heading "Install dependencies"
 pip3.6 install -r requirements.txt
-echo -e "\e[36m<<<<<<<<< create systemD payment service file  >>>>>>>>\e[0m"
+func_heading "create systemD payment service file"
 
 sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}" ${script_path}/payment.service
 cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
-echo -e "\e[36m<<<<<<<<< reload daemon,Enable and restart payment service  >>>>>>>>\e[0m"
+func_heading "reload daemon,Enable and restart payment service"
 systemctl daemon-reload
 systemctl enable payment
 systemctl restart payment

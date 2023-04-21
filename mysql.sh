@@ -2,15 +2,15 @@ script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
 
-echo -e "\e[36m<<<<<<<<< disabling  default version >>>>>>>>\e[0m"
+func_heading "disabling  default version"
 dnf module disable mysql -y
-echo -e "\e[36m<<<<<<<<< Configuring mysql required version Repo files >>>>>>>>\e[0m"
+func_heading "Configuring mysql required version Repo files"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
-echo -e "\e[36m<<<<<<<<< Install mysql server >>>>>>>>\e[0m"
+func_heading "Install mysql server"
 yum install mysql-community-server -y
-echo -e "\e[36m<<<<<<<<< Start&Enable mysqld >>>>>>>>\e[0m"
+func_heading "Start&Enable mysqld"
 systemctl enable mysqld
 systemctl start mysqld
-echo -e "\e[36m<<<<<<<<< Start using mysql servies with new root creds >>>>>>>>\e[0m"
+func_heading Start using mysql servies with new root creds
 mysql_secure_installation --set-root-pass RoboShop@1
 

@@ -3,38 +3,39 @@ script_path=$(dirname $script)
 source ${script_path}/common.sh
 mysql_root_password=$1
 
-echo -e "\e[36m<<<<<<<<< Install Maven >>>>>>>>\e[0m"
+func_heading "Install Maven"
 pwd
 yum install maven -y
-echo -e "\e[36m<<<<<<<<< Create App user >>>>>>>>\e[0m"
+func_heading "Create App user"
 useradd ${app_user}
-echo -e "\e[36m<<<<<<<<< Create app directory >>>>>>>>\e[0m"
+func_heading "Create app directory"
+rm -rf /app
 mkdir /app
 
-echo -e "\e[36m<<<<<<<<< Install Maven >>>>>>>>\e[0m"
+func_heading "Install Maven"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
-echo -e "\e[36m<<<<<<<<< Download App content >>>>>>>>\e[0m"
+func_heading "Download App content"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
-echo -e "\e[36m<<<<<<<<< change to app directory >>>>>>>>\e[0m"
+func_heading "change to app directory"
 cd /app
-echo -e "\e[36m<<<<<<<<< extract app content >>>>>>>>\e[0m"
+func_heading "extract app content"
 unzip /tmp/shipping.zip
-echo -e "\e[36m<<<<<<<<< Install Dependencies for Maven >>>>>>>>\e[0m"
+func_heading "Install Dependencies for Maven"
 cd /app
 mvn clean package
 
-echo -e "\e[36m<<<<<<<<< move the file  generated >>>>>>>>\e[0m"
+func_heading "move the file  generated"
 mv target/shipping-1.0.jar shipping.jar
-echo -e "\e[36m<<<<<<<<< create systemD service file >>>>>>>>\e[0m"
+func_heading "create systemD service file"
 cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 
-echo -e "\e[36m<<<<<<<<< copy mysql repo file >>>>>>>\e[0m"
+func_heading "copy mysql repo file"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
-echo -e "\e[36m<<<<<<<<< Install mysql client >>>>>>>>\e[0m"
+func_heading "Install mysql client"
 yum install mysql -y
-echo -e "\e[36m<<<<<<<<< provide mysql root user passwd to interact with mysql client to load schema >>>>>>>>\e[0m"
+func_heading "provide mysql root user passwd to interact with mysql client to load schema"
 mysql -h mysqld.e-platform.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
-echo -e "\e[36m<<<<<<<<< Enable & Start shipping Service >>>>>>>>\e"
+func_heading "Enable & Start shipping Service"
 systemctl daemon-reload
 systemctl enable shipping
 systemctl start shipping
