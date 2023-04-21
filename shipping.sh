@@ -1,7 +1,7 @@
 script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
-mysql_appuser_password=$1
+mysql_root_password=$1
 
 echo -e "\e[36m<<<<<<<<< Install Maven >>>>>>>>\e[0m"
 pwd
@@ -33,7 +33,7 @@ cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 echo -e "\e[36m<<<<<<<<< Install mysql client >>>>>>>>\e[0m"
 yum install mysql -y
 echo -e "\e[36m<<<<<<<<< create new user n passwd to interact with mysql client to load schema >>>>>>>>\e[0m"
-mysql -h mysqld.e-platform.online -uroot -p${mysql_appuser_password} < /app/schema/shipping.sql
+mysql -h mysqld.e-platform.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 echo -e "\e[36m<<<<<<<<< Enable & Start shipping Service >>>>>>>>\e"
 systemctl daemon-reload
 systemctl enable shipping
