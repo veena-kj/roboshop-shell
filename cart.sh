@@ -1,6 +1,7 @@
-script_path = $(dirname $0)
+script=$(realpath $0)
+script_path=$(dirname $script)
 source ${script_path}/common.sh
-pwd
+
 echo -e "\e[36m<<<<<<<<< Configuring NodeJs Repo files >>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 

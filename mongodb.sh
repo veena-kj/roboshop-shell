@@ -1,6 +1,7 @@
-script_path = $(dirname $0)
+script=$(realpath $0)
+script_path=$(dirname $script)
 source ${script_path}/common.sh
-pwd
+
 echo -e "\e[36m ************ Creating mongodb repo file*******************\e[0m"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[36m ************ installing mongodb *******************\e[0m"

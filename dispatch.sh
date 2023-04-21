@@ -1,6 +1,7 @@
-script_path = $(dirname $0)
+script=$(realpath $0)
+script_path=$(dirname $script)
 source ${script_path}/common.sh
-pwd
+
 echo -e "\e[36m<<<<<<<<< Install golang >>>>>>>>\e[0m"
 pwd
 yum install golang -y

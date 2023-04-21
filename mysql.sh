@@ -1,6 +1,7 @@
-script_path = $(dirname $0)
+script=$(realpath $0)
+script_path=$(dirname $script)
 source ${script_path}/common.sh
-pwd
+
 echo -e "\e[36m<<<<<<<<< Configuring mysql required version Repo files >>>>>>>>\e[0m"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 echo -e "\e[36m<<<<<<<<< disabling  default version repo files >>>>>>>>\e[0m"
