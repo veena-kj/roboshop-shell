@@ -1,4 +1,7 @@
-source common.sh
+script_path = $(dirname $0)
+source ${script_path}/common.sh
+pwd
+
 echo -e "\e[36m********* Install nginx **************\e[0m"
 yum install nginx -y
 
@@ -12,7 +15,7 @@ pwd
 unzip /tmp/frontend.zip
 
 echo -e "\e[36m********* Configure reverse proxy **************\e[0m"
-cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 echo -e "\e[36m********* Enable nginx **************\e[0m"
 systemctl enable nginx
 systemctl start nginx

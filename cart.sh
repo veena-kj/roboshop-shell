@@ -1,5 +1,6 @@
+script_path = $(dirname $0)
+source ${script_path}/common.sh
 pwd
-source common.sh
 echo -e "\e[36m<<<<<<<<< Configuring NodeJs Repo files >>>>>>>>\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
@@ -19,7 +20,7 @@ unzip /tmp/cart.zip
 echo -e "\e[36m<<<<<<<<< Install NodeJs dependencies >>>>>>>>\e[0m"
 npm install
 echo -e "\e[36m<<<<<<<<< Create cart systemd service >>>>>>>>\e[0m"
-cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service
+cp ${script_path}/cart.service /etc/systemd/system/cart.service
 #cp cart.service /etc/systemd/system/cart.service
 #Ensure you replace <MONGODB-SERVER-IPADDRESS> with IP address of mongodb in catalog service file
 echo -e "\e[36m<<<<<<<<< Enable and start Cart >>>>>>>>\e[0m"

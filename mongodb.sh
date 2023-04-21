@@ -1,5 +1,8 @@
+script_path = $(dirname $0)
+source ${script_path}/common.sh
+pwd
 echo -e "\e[36m ************ Creating mongodb repo file*******************\e[0m"
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 echo -e "\e[36m ************ installing mongodb *******************\e[0m"
 yum install mongodb-org -y
 
