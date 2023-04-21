@@ -13,7 +13,7 @@ cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 func_heading "Install mongodb client"
 yum install mongodb-org-shell -y
 func_heading "load schema"
-mongo --host mongodb-dev.e-platform.online </app/schema/catalogue.js
+mongo --host mongodb-dev.e-platform.online </app/schema/${component}.js
 fi
 }
 
