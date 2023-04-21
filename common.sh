@@ -5,6 +5,7 @@ app_user=roboshop
 func_heading(){
   echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m"
   }
+
 func_schema_setup(){
   if [ "schema_setup" == "mongo" ];then
 func_heading "copy the repo file for mongo client"
