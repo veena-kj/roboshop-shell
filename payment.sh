@@ -2,10 +2,12 @@ script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
-payment
+if [ -z "rabbitmq_appuser_password"] then
+  echo  rabbitmq_appuser_password missing
+  exit
+  fi
 
 func_heading "Install python "
-
 yum install python36 gcc python3-devel -y
 func_heading "Create app user"
 useradd ${app_user}
@@ -21,7 +23,6 @@ unzip /tmp/payment.zip
 func_heading "Install dependencies"
 pip3.6 install -r requirements.txt
 func_heading "create systemD payment service file"
-
 sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}" ${script_path}/payment.service
 cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
