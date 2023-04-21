@@ -3,10 +3,10 @@ script_path=$(dirname $script)
 source ${script_path}/common.sh
 mysql_root_password=$1
 
-if [ -z "mysql_root_password" ] then
+if [ -z "mysql_root_password" ]; then
   echo mysql_root_password is missing
   exit
-  fi
+fi
 
 func_heading "disabling  default version"
 dnf module disable mysql -y
