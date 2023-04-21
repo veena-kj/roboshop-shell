@@ -7,6 +7,7 @@ func_nodejs(){
 
   echo -e "\e[36m<<<<<<<<< Configuring NodeJs Repo files >>>>>>>>\e[0m"
   yum install nodejs -y
+  rm -rf /app
   echo -e "\e[36m<<<<<<<<< Create application user  >>>>>>>>\e[0m"
   useradd ${app_user}
   echo -e "\e[36m<<<<<<<<< Create app directory >>>>>>>>\e[0m"
