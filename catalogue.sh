@@ -3,7 +3,7 @@ dirname $0
 echo $0
 pwd
 script_path = ${dirname $0}
-echo script_path
+echo ${script_path}
 exit
 
 script_path = ${dirname $0}
