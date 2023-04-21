@@ -1,13 +1,7 @@
-#source common.sh
-dirname $0
-echo $0
-pwd
-script_path=$(dirname $0)
-echo ${script_path}
-exit
 
 script_path = ${dirname $0}
 source ${script_path}/common.sh
+
 echo -e "\e[36m>>>>>>>>>>>> configuring nodejs repos <<<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 yum install nodejs -y
