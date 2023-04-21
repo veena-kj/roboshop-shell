@@ -5,13 +5,21 @@ app_user=roboshop
 func_heading(){
   echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m"
   }
+func_schema_setup(){
+  if [ "schema_setup" == "mongo" ];then
+func_heading "copy the repo file for mongo client"
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+func_heading "Install mongodb client"
+yum install mongodb-org-shell -y
+func_heading "load schema"
+mongo --host mongodb-dev.e-platform.online </app/schema/catalogue.js
+fi
+}
 
 func_nodejs(){
-
   func_heading "Configuring NodeJs Repo files"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-
-  func_heading Configuring NodeJs Repo files
+  func_heading "Configuring NodeJs Repo files"
   yum install nodejs -y
   rm -rf /app
   func_heading "Create application user"
@@ -35,5 +43,6 @@ func_nodejs(){
   systemctl daemon-reload
   systemctl enable ${component}
   systemctl restart ${component}
-
+  func_schema_setup
 }
+
