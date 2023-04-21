@@ -8,9 +8,9 @@ echo ${script_path}
 
 component=catalogue
 func_nodejs
+
 func_heading "copy the repo file for mongo client"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
-
 func_heading "Install mongodb client"
 yum install mongodb-org-shell -y
 func_heading "load schema"

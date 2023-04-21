@@ -38,7 +38,7 @@ func_heading "copy mysql repo file"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 func_heading "Install mysql client"
 yum install mysql -y
-func_heading "provide mysql root user passwd to interact with mysql client to load schema"
+func_heading "provide mysql root user passwd to interact with mysql to load schema"
 mysql -h mysqld.e-platform.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql
 func_heading "Enable & Start shipping Service"
 systemctl daemon-reload
