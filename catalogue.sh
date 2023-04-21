@@ -8,12 +8,11 @@ echo ${script_path}
 
 component=catalogue
 func_nodejs
-
-echo -e "\e[36m >>>>>> copy the repo file for mongo client<<<<<<\e[0m"
+func_heading "copy the repo file for mongo client"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
-echo -e "\e[36m >>>> Install mongodb client  <<<<<<<\e[0m"
+func_heading "Install mongodb client"
 yum install mongodb-org-shell -y
-echo -e "\e[36m >>>> load schema <<<<<<<\e[0m"
+func_heading "load schema"
 mongo --host mongodb-dev.e-platform.online </app/schema/catalogue.js
 

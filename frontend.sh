@@ -2,20 +2,20 @@ script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
 
-echo -e "\e[36m********* Install nginx **************\e[0m"
+func_heading "Install nginx"
 yum install nginx -y
 
-echo -e "\e[36m********* Remove the content **************\e[0m"
+func_heading "Remove the content"
 rm -rf /usr/share/nginx/html/*
-echo -e "\e[36m********* Download the content **************\e[0m"
+func_heading "Download the content"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
-echo -e "\e[36m********* navigate to content location & Extract app content**************\e[0m"
+func_heading "navigate to content location & Extract app content"
 cd /usr/share/nginx/html
 pwd
 unzip /tmp/frontend.zip
 
-echo -e "\e[36m********* Configure reverse proxy **************\e[0m"
+func_heading "Configure reverse proxy"
 cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
-echo -e "\e[36m********* Enable nginx **************\e[0m"
+func_heading "Enable nginx"
 systemctl enable nginx
 systemctl start nginx

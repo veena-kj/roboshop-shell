@@ -5,12 +5,13 @@ source ${script_path}/common.sh
 component=user
 func_nodejs
 
-echo -e "\e[36m******** Copy mongodb repo ***************\e[0m"
+func_heading "Copy mongodb repo"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
-echo -e "\e[36m********** Install Mongodb client *************\e[0m"
+func_heading "Install Mongodb client"
 yum install mongodb-org-shell -y
-echo -e "\e[36m********* Load schema **************\e[0m"
+func_heading "Load schema"
 mongo --host mongodb-dev.e-platform.online </app/schema/user.js
 
-echo -e "\e[36m***********************\e[0m"
+func_heading "check listening ports for mongod service "
+netstat -lntp
