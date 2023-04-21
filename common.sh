@@ -7,7 +7,7 @@ func_heading(){
   }
 
 func_schema_setup(){
-  if [ "schema_setup" == "mongo" ];then
+  if [ "$schema_setup" == "mongo" ];then
 func_heading "copy the repo file for mongo client"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 func_heading "Install mongodb client"
