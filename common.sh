@@ -74,6 +74,7 @@ func_java(){
 func_heading "Install Maven"
 yum install maven -y
 
+rm -rf /app
 func_app_prereq
 
 func_heading "Install Dependencies for Maven"
