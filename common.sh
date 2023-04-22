@@ -4,7 +4,7 @@ app_user=roboshop
 logfile=/tmp/roboshop.log
 
 func_heading(){
-   echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m"
+   echo -e "\e[33m<<<<<<< $1 >>>>>>>>\e[0m"
    echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m" &>>$logfile
   }
 
@@ -24,8 +24,10 @@ func_schema_setup(){
 
 func_heading "copy the repo file for mongo client"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$logfile
+func_status_check $?
 func_heading "Install mongodb client"
 yum install mongodb-org-shell -y &>>$logfile
+func_status_check $?
 func_heading "load schema"
 mongo --host mongodb-dev.e-platform.online </app/schema/${component}.js &>>$logfile
 func_status_check $?
@@ -37,7 +39,7 @@ cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$logfile
 func_heading "Install mysql client"
 yum install mysql -y &>>$logfile
 func_heading "provide mysql root user passwd to interact with mysql to load schema"
-mysql -h mysqld.e-platform.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$logfile
+mysql -h mysql.e-platform.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$logfile
 func_status_check $?
 fi
 
@@ -53,10 +55,13 @@ func_status_check $?
 func_heading "Create application directory "
 rm -rf /app &>>$logfile
 mkdir /app &>>$logfile
+func_status_check $?
 func_heading "Download the application content"
 curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$logfile
+func_status_check $?
 func_heading "change to application directory"
 cd /app &>>$logfile
+func_status_check $?
 func_heading "Download the application content"
 unzip /tmp/${component}.zip &>>$logfile
 func_status_check $?
@@ -67,6 +72,7 @@ func_systemd_setup(){
   cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$logfile
   func_status_check $?
   func_schema_setup
+  func_status_check $?
   func_heading "Enable & Start ${component} Service"
   systemctl daemon-reload &>>$logfile
   systemctl enable ${component} &>>$logfile
