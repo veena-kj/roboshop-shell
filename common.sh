@@ -107,7 +107,6 @@ func_heading "Install Maven"
 yum install maven -y &>>$logfile
 func_status_check $?
 rm -rf /app &>>$logfile
-func_status_check $?
 func_app_prereq
 func_heading "Install Dependencies for Maven"
 mvn clean package &>>$logfile
