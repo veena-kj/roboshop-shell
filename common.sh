@@ -5,6 +5,7 @@ logfile=/tmp/roboshop.log
 
 func_heading(){
    echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m"
+   echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m" &>>$logfile
   }
 
 func_status_check(){
