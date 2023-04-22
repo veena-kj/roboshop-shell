@@ -6,6 +6,16 @@ func_heading(){
   echo -e "\e[33m<<<<<<<<<< $1 >>>>>>>>>>>\e[0m"
   }
 
+func_status_check(){
+  if [ $? -eq 0 ];then
+    echo -e "\e[32mSUCCESS\e[0m"
+    else
+     echo -e "\e[31mFAILURE\e[0m"
+     exit 1
+  fi
+}
+
+
 func_schema_setup(){
   if [ "$schema_setup" == "mongo" ];then
 
@@ -53,6 +63,8 @@ func_systemd_setup(){
   systemctl enable ${component}
   systemctl restart ${component}
 }
+
+
 
 func_nodejs(){
   func_heading  "Configuring NodeJs Repo files"
