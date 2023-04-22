@@ -28,7 +28,6 @@ mysql -h mysqld.e-platform.online -uroot -p${mysql_root_password} < /app/schema/
 
 fi
 }
-
 func_app_prereq(){
 
 func_heading "Create application user"
@@ -84,4 +83,5 @@ mv target/${component}-1.0.jar ${component}.jar
 
 func_schema_setup
 func_systemd_setup
+pwd
 }

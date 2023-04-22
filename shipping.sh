@@ -8,7 +8,7 @@ if [ -z "mysql_root_password" ]; then
   exit
 fi
 func_java
-
+pwd
 component="shipping"
 schema_setup=mysql
 func_schema_setup
