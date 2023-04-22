@@ -9,12 +9,12 @@ if [ -z "mysql_root_password" ]; then
 fi
 
 func_heading "disabling default version"
-dnf module disable mysql -y
+dnf module disable mysql -y > /tmp/roboshop.log
 func_status_check $?
 func_heading "Configuring mysql required version Repo files"
-cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo  > /tmp/roboshop.log
 func_heading "Install mysql server"
-yum install mysql-community-server -y
+yum install mysql-community-server -y > /tmp/roboshop.log
 func_status_check $?
 func_heading "Start using mysql services with new root creds"
 mysql_secure_installation --set-root-pass ${mysql_root_password}
