@@ -78,7 +78,7 @@ func_nodejs(){
   func_app_prereq
 
   func_heading "Install NodeJs dependencies"
-  npm install
+  npm install > /tmp/roboshop.log
  func_status_check $?
   func_schema_setup
   func_systemd_setup
@@ -87,15 +87,15 @@ func_nodejs(){
 
 func_java(){
 func_heading "Install Maven"
-yum install maven -y
+yum install maven -y > /tmp/roboshop.log
 rm -rf /app
 func_status_check $?
 func_app_prereq
 func_heading "Install Dependencies for Maven"
-mvn clean package
+mvn clean package > /tmp/roboshop.log
 func_status_check $?
 func_heading "move the file  generated"
-mv target/${component}-1.0.jar ${component}.jar
+mv target/${component}-1.0.jar ${component}.jar > /tmp/roboshop.log
 func_status_check $?
 func_schema_setup
 func_systemd_setup
