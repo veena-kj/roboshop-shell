@@ -36,8 +36,10 @@ fi
  if [ "$schema_setup" == "mysql" ]; then
  func_heading "copy mysql repo file"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$logfile
+func_status_check $?
 func_heading "Install mysql client"
 yum install mysql -y &>>$logfile
+func_status_check $?
 func_heading "provide mysql root user passwd to interact with mysql to load schema"
 mysql -h mysql.e-platform.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$logfile
 func_status_check $?
@@ -85,6 +87,7 @@ func_systemd_setup(){
 func_nodejs(){
   func_heading  "Configuring NodeJs Repo files"
   curl -sL https://rpm.nodesource.com/setup_lts.x | bash  &>>$logfile
+  func_status_check $?
   func_heading "Installing NodeJs Repo files"
   yum install nodejs -y &>>$logfile
  func_status_check $?
@@ -101,6 +104,7 @@ func_nodejs(){
 func_java(){
 func_heading "Install Maven"
 yum install maven -y &>>$logfile
+func_status_check $?
 rm -rf /app &>>$logfile
 func_status_check $?
 func_app_prereq
