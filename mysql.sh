@@ -1,7 +1,7 @@
 script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
-mysql_root_password=$1
+mysql_root_password=Roboshop@1
 
 if [ -z "mysql_root_password" ]; then
   echo mysql_root_password is missing
@@ -13,7 +13,6 @@ dnf module disable mysql -y &>>$logfile
 func_status_check $?
 func_heading "Configuring mysql required version Repo files"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$logfile
-func_status_check $? &>>$logfile
 func_status_check $?
 func_heading "Install mysql server"
 yum install mysql-community-server -y &>>$logfile
