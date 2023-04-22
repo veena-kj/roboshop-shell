@@ -8,17 +8,19 @@ if [ -z "mysql_root_password" ]; then
   exit
 fi
 
-func_heading "disabling  default version"
+func_heading "disabling default version"
 dnf module disable mysql -y
-func_status_check $? $?
+func_status_check $?
 func_heading "Configuring mysql required version Repo files"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 func_heading "Install mysql server"
 yum install mysql-community-server -y
-
+func_status_check $?
 func_heading "Start using mysql servies with new root creds"
 mysql_secure_installation --set-root-pass ${mysql_root_password}
+func_status_check $?
 func_heading "Start & Enable mysqld"
 systemctl enable mysqld
 systemctl restart mysqld
+func_status_check $?
 
