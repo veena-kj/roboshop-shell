@@ -18,7 +18,7 @@ yum install mysql-community-server -y
 
 func_heading Start using mysql servies with new root creds
 mysql_secure_installation --set-root-pass ${mysql_root_password}
-func_heading "Start&Enable mysqld"
+func_heading "Start & Enable mysqld"
 systemctl enable mysqld
 systemctl restart mysqld
 
