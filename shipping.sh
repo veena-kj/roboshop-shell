@@ -9,7 +9,7 @@ if [ -z "mysql_root_password" ]; then
 fi
 func_java
 pwd
-component="shipping"
+component=shipping
 schema_setup=mysql
 func_schema_setup
 
