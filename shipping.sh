@@ -7,9 +7,10 @@ if [ -z "mysql_root_password" ]; then
   echo mysql_root_password is missing
   exit
 fi
-func_java
+
 pwd
 component=shipping
 schema_setup=mysql
+func_java
 func_schema_setup
 
