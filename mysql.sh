@@ -18,7 +18,7 @@ func_heading "Install mysql server"
 yum install mysql-community-server -y &>>$logfile
 func_status_check $?
 func_heading "Start using mysql services with new root creds"
-mysql_secure_installation --set-root-pass ${mysql_root_password}  &>>$logfile
+mysql_secure_installation --set-root-pass $mysql_root_password  &>>$logfile
 func_status_check $?
 func_heading "Start & Enable mysqld"
 systemctl enable mysqld &>>$logfile

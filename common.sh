@@ -42,7 +42,7 @@ func_heading "Install mysql client"
 yum install mysql -y &>>$logfile
 func_status_check $?
 func_heading "provide mysql root user passwd to interact with mysql to load schema"
-mysql -h mysql.e-platform.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$logfile
+mysql -h mysql.e-platform.online -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$logfile
 func_status_check $?
 fi
 
