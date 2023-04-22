@@ -10,7 +10,7 @@ fi
 
 func_heading "disabling  default version"
 dnf module disable mysql -y
-func_status_check
+func_status_check $?
 func_heading "Configuring mysql required version Repo files"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 func_heading "Install mysql server"
