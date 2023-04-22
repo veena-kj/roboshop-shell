@@ -13,6 +13,7 @@ dnf module disable mysql -y &>>$logfile
 func_status_check $?
 func_heading "Configuring mysql required version Repo files"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$logfile
+func_status_check $? &>>$logfile
 func_status_check $?
 func_heading "Install mysql server"
 yum install mysql-community-server -y &>>$logfile
