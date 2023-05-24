@@ -105,7 +105,7 @@ func_nodejs(){
   func_app_prereq
 
   func_heading "Install NodeJs dependencies"
-  npm install &>>$logfile
+  npm install &>>$log_file
  func_status_check $?
 
   func_schema_setup
