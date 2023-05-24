@@ -47,7 +47,7 @@ yum install mysql -y &>>$log_file
 func_status_check $?
 
 func_heading "provide mysql root user passwd to interact with mysql to load schema"
-mysql -h mysql.e-platform.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
+mysql -h mysql-dev.e-platform.online -uroot -p${mysql_root_password} < /app/schema/${component}.sql &>>$log_file
 func_status_check $?
 
 fi
